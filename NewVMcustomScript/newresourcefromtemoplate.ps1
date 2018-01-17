@@ -1,3 +1,3 @@
 ﻿New-AzureRmResourceGroup customscriptvm -Location southcentralus -force
 New-AzureRmResourceGroupDeployment -ResourceGroupName customscriptvm `
- -TemplateFile 'C:\Users\acorona\OneDrive - Microsoft\TSP\Meetups\Jan2018\vmcustomscript.json' -TemplateParameterFile 'C:\Users\acorona\OneDrive - Microsoft\TSP\Meetups\Jan2018\vmcustomscript.parameters.json'
+ -TemplateFile 'C:\Users\acorona\OneDrive - Microsoft\Meetups\NewVMcustomScript\vmcustomscript.json' -TemplateParameterFile  'C:\Users\acorona\OneDrive - Microsoft\Meetups\NewVMcustomScript\vmcustomscript.parameters.json'
