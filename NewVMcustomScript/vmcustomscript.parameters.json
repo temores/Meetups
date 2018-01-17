@@ -1,0 +1,17 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "adrian"
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/a9ab2198-f5a6-4e71-a979-6043272806a3/resourceGroups/keyvaulttemores/providers/Microsoft.KeyVault/vaults/temoresvault"
+                },
+                "secretname": "secretpassword"
+        }
+   }
+ }
+}
