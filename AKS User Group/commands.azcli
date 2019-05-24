@@ -1,0 +1,33 @@
+#  Login Commands
+
+az login
+az cloud list -o table
+az cloud set 
+az account list -o table
+az account set --subscription "<Subscription Name>"
+
+# Cluster Managmeent via AKS
+az aks list -o table
+az aks get-credentials -n <ClusterName> -g <ResourceGroup>
+
+#  KubeCtl Commands (Context management)
+kubectl config current-context
+kubectl config get-contexts
+kubectl config use-context <yourClusterName>
+kubectl config set-context --namespace=<Namespace>
+
+#  KubeCtl Commands (Pod and Node Management)
+kubectl get storageclass
+kubectl describe storageclass
+kubectl describe pod <POD-UID>
+
+kubectl get nodes -o wide
+kubectl get pods -o wide
+
+kubectl get ns
+kubectl create namespace <Namespace>
+kubectl get pods --namespace=<Namespace>
+kubectl delete ns <Namespace>
+
+
+

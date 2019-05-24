@@ -1,0 +1,22 @@
+resourceGroup="aksclusterRG"
+location="EastUS"
+clustername="akscluster"
+
+az group create -n $resourceGroup -l $location
+
+az aks create -g $resourceGroup -n $clustername --node-count 3 --generate-ssh-keys
+
+az aks show -g $resourceGroup -n $clustername
+
+az aks get-credentials -g $resourceGroup -n $clustername
+
+## Delete
+az ad sp delete --id $(az aks show -g $resourceGroup -n $clustername --query servicePrincipalProfile.clientId -o tsv)
+az group delete -n $resourceGroup --yes --no-wait
+
+#  Dashboard
+az aks browse -g $resourceGroup -n $clustername
+#  http://127.0.0.1:8001
+
+#  Dashboard RBAC Permissions
+kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
