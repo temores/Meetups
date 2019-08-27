@@ -1,0 +1,101 @@
+SecurityAlert
+| where AlertName contains "brute-force"  
+
+----
+remove
+| summarize count() by Reason
+Add 
+| where TimeGenerated >= todatetime('2019-07-16T18:33:28Z') // 2 hours before attack
+| where IpAddress == "10.0.24.7"
+
+---
+
+SecurityEvent
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')
+| where EventID == 4624
+| where Account contains @"jeffl"
+| distinct Computer
+
+
+-----
+
+| sort by TimeGenerated asc
+
+
+----
+
+
+SecurityEvent
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')  
+| where EventID == 4688  
+| where Account contains @"jeffl" and Computer contains "VictimPC" 
+| order by TimeGenerated asc
+
+
+---
+
+SecurityEvent  
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')  
+| where EventID == 4688  
+| where Account contains @"jeffl"  
+| where Computer contains @"VictimPC"
+| project TimeGenerated, CommandLine , NewProcessName
+| order by TimeGenerated asc
+
+---
+ 
+SecurityEvent  
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')  
+| where Computer contains @"VictimPC"
+
+----
+
+SecurityEvent  
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')  
+| where Computer contains @"VictimPC"
+| distinct EventID
+| order by EventID  asc
+
+----
+
+
+SecurityEvent
+| where TimeGenerated >= todatetime('2019-07-16T00:00:00Z')
+| where EventID == 4624
+| where Computer contains @"VictimPC" or Computer contains @"AdminPC"
+| where AccountType == 'User'
+| order by TimeGenerated asc
+
+
+------
+
+SecurityEvent 
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z') 
+| where EventID == 4688 
+| where Account contains @"RonHD" 
+| where Computer contains @"AdminPC"
+| project TimeGenerated, CommandLine , NewProcessName
+| order by TimeGenerated asc
+
+----
+
+SecurityAlert
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')
+| search @"ronHD"
+| order by TimeGenerated asc
+
+----
+
+SecurityAlert
+| where TimeGenerated >= todatetime('2019-07-16T20:33:28Z')
+| search @"AdminPC"
+| order by TimeGenerated asc
+
+------
+
+SecurityEvent
+| where TimeGenerated >= todatetime('2019-07-16T00:00:00Z')
+| where EventID == 4624
+| where Computer contains @"VictimPC" or Computer contains @"AdminPC"
+| where AccountType == 'User'
+| order by TimeGenerated asc
